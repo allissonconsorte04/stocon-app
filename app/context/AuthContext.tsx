@@ -10,7 +10,7 @@ interface AuthProps {
 }
 
 const TOKEN_KEY = "my-jwt";
-export const API_URL = "http://localhost:3000/v1";
+export const API_URL = "http://192.168.1.106:3000/v1";
 const AuthContext = createContext<AuthProps>({});
 
 export const useAuth = () => {
@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }: any) => {
   }, []);
 
   const register = async (email: string, password: string) => {
-    console.log('registrandoooo')
-    console.log(email)
-    console.log(password)
+    console.log("registrandoooo");
+    console.log(email);
+    console.log(password);
     try {
       return await axios.post(`${API_URL}/users`, { email, password });
     } catch (e) {
@@ -54,14 +54,17 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   const login = async (email: string, password: string) => {
-    console.log('testeeeee')
-    
+    console.log("testeeeee");
+
     try {
-      const result = await axios.post(`${API_URL}/login`, {
-        email,
-        password,
-      }, { headers: { 'Content-Type': 'application/json' }},
-    );
+      const result = await axios.post(
+        `${API_URL}/login`,
+        {
+          email,
+          password,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
       console.log("result login >> ", result);
 
@@ -78,7 +81,7 @@ export const AuthProvider = ({ children }: any) => {
 
       return result;
     } catch (e) {
-        console.log('error login > ', e)
+      console.log("error login > ", e);
       return { error: true, msg: (e as any).response.data.error };
     }
   };
