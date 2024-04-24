@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }: any) => {
 
       if (token) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        console.log('gravando o token ? ', token)
 
         setAuthState({
           token: token,
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }: any) => {
       console.log("result login >> ", result);
 
       setAuthState({
-        token: result.data.token,
+        token: result.data.auth_token,
         authenticated: true,
       });
 
